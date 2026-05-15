@@ -40,7 +40,7 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
 export function useTooltip() {
   const context = useContext(TooltipContext);
   if (!context) {
-    throw new Error('TooltipProvider is required');
+    throw new Error('TooltipProvider missing');
   }
   return context;
 }

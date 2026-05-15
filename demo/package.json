@@ -10,19 +10,19 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "typescript": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-force-graph-3d": "latest",
-    "three": "latest"
+    "@vitejs/plugin-react": "6.0.2",
+    "vite": "8.0.13",
+    "typescript": "6.0.3",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-force-graph-3d": "1.29.1",
+    "three": "0.184.0"
   },
   "devDependencies": {
-    "@eslint/js": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "eslint": "latest",
-    "typescript-eslint": "latest"
+    "@eslint/js": "10.0.1",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.3.0",
+    "typescript-eslint": "8.59.3"
   }
 }

@@ -19,21 +19,23 @@ export function QuestionsTab({ onQuestionDraft, draftQuestionOpen, editQuestionI
         </Tooltip>
       </div>
       {draftQuestionOpen && <article className="notice-box">새 질문 작성 패널 · 제목과 본문 입력 상태</article>}
-      <div className="question-list">
-        {questions.map((question) => (
-          <article className="question-card" key={question.id}>
-            <div className="section-heading">
-              <div><strong>{question.title}</strong><p>{question.body}</p></div>
-              <span className="status-chip">답글 {question.replies.length}</span>
-            </div>
-            {editQuestionId === question.id && <div className="notice-box">{question.id} 수정 중 상태</div>}
-            {deleteQuestionId === question.id && <div className="notice-box">{question.id} 삭제 확인 상태</div>}
-            <div className="reply-list">
-              {question.replies.map((reply) => <span className="pill" key={reply}>{reply}{editReplyId === reply ? ' · 인라인 편집 중' : ''}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
+      <Tooltip id="tip-question-list" title="질문 목록" body="질문1~질문4, 답글1~답글6, 수정/삭제/인라인 편집 상태를 한 화면에서 확인합니다." requirement="실제 CRUD 없이 누적 질문 상태와 UI 상태만 정적으로 시연합니다.">
+        <div className="question-list" tabIndex={0}>
+          {questions.map((question) => (
+            <article className="question-card" key={question.id}>
+              <div className="section-heading">
+                <div><strong>{question.title}</strong><p>{question.body}</p></div>
+                <span className="status-chip">답글 {question.replies.length}</span>
+              </div>
+              {editQuestionId === question.id && <div className="notice-box">{question.id} 수정 중 상태</div>}
+              {deleteQuestionId === question.id && <div className="notice-box">{question.id} 삭제 확인 상태</div>}
+              <div className="reply-list">
+                {question.replies.map((reply) => <span className="pill" key={reply}>{reply}{editReplyId === reply ? ' · 인라인 편집 중' : ''}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </Tooltip>
     </section>
   );
 }

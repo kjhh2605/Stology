@@ -40,6 +40,11 @@
 │       ├── 07-study-container.md
 │       ├── 08-study-questions.md
 │       └── 09-review-screen.md
+├── demo/                             # React/Vite 기반 Stology 데모사이트
+│   ├── docs/traceability.md          # 요구사항-구현-검증 매핑
+│   ├── src/                          # 화면, 컴포넌트, 정적 데모 데이터
+│   ├── package.json                  # 데모 실행/검증 명령
+│   └── package-lock.json             # 데모 의존성 잠금
 ├── video/                            # HyperFrames 영상 프로젝트
 │   ├── AGENTS.md                     # 영상 작업 전용 지침
 │   ├── DESIGN.md                     # 영상 디자인 소스 오브 트루스
@@ -111,6 +116,31 @@ npm run publish   # publish
 - 실제 MP4 길이/주요 프레임 검수가 필요한 경우 `ffprobe` 및 프레임 추출로 확인
 - `video/renders/`의 기존 결과물은 명시 요청 없이 삭제/덮어쓰기 금지
 
+## 데모사이트 작업 규칙
+
+`demo/`는 로그인/백엔드 없이 Stology 핵심 화면 흐름을 체험하기 위한 정적 React 데모입니다.
+
+주요 명령:
+
+```bash
+cd demo
+npm install       # 최초 의존성 설치
+npm run dev       # 로컬 미리보기
+npm run typecheck # TypeScript 검사
+npm run lint      # ESLint 검사
+npm run build     # 프로덕션 빌드
+```
+
+데모 작업 기준:
+
+- 로그인은 구현하지 않고 로그인된 Home 화면에서 시작합니다.
+- 백엔드 API, 브라우저 저장소, 실제 파일 업로드/파싱은 추가하지 않습니다.
+- 데모 데이터는 `사용자1`, `스터디1`, `자료1`, `개념1`처럼 추상 명칭만 사용합니다.
+- 시각 스타일은 화이트/그레이 스켈레톤으로 유지하고 의미 색상은 쓰지 않습니다.
+- 주요 화면/상호작용 컴포넌트에는 서비스 기능과 개발/디자인 요구사항을 담은 hover/focus 말풍선을 유지합니다.
+- 3D 온톨로지 그래프는 `react-force-graph-3d` 기반으로 유지하되 그래프 직접 편집 기능은 추가하지 않습니다.
+- `demo/node_modules/`, `demo/dist/`, `*.tsbuildinfo`는 산출물로 커밋하지 않습니다.
+
 ## Git/커밋 지침
 
 - 사용자 요청 없이 커밋하지 않습니다.
@@ -122,6 +152,8 @@ npm run publish   # publish
 - 전체 서비스 기획: `docs/기획안.md`
 - PM 화면설계서: `docs/화면설계서.md`
 - 화면 목록/흐름: `docs/wire_frame_requirements/00-index.md`
+- 데모사이트: `demo/`
+- 데모 요구사항 추적: `demo/docs/traceability.md`
 - 영상 디자인 기준: `video/DESIGN.md`
 - 영상 구현 규칙: `video/AGENTS.md`
 - 영상 메인 파일: `video/index.html`

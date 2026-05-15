@@ -17,26 +17,30 @@ export function HomeScreen({ onCreate, onOpenStudy }: { onCreate: () => void; on
           </Tooltip>
         </div>
       </section>
-      <section className="panel">
-        <h2>참여 스터디</h2>
-        <div className="card-list">
-          {studies.map((study) => (
-            <article className="card" key={study.id}>
-              <strong>{study.title}</strong>
-              <span>{study.state} · {study.week}</span>
-              <small>{study.members.join(' / ')}</small>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="panel wide">
-        <h2>활동 로그</h2>
-        <ul className="timeline">
-          {activities.map((activity) => (
-            <li key={activity.id}><span>{activity.text}</span><small>{activity.meta}</small></li>
-          ))}
-        </ul>
-      </section>
+      <Tooltip id="tip-home-studies" title="참여 스터디" body="이미 사용 중인 스터디1과 보관된 스터디2를 함께 보여줍니다." requirement="사용된 듯한 누적 상태를 추상 명칭으로만 표현해야 합니다.">
+        <section className="panel" tabIndex={0}>
+          <h2>참여 스터디</h2>
+          <div className="card-list">
+            {studies.map((study) => (
+              <article className="card" key={study.id}>
+                <strong>{study.title}</strong>
+                <span>{study.state} · {study.week}</span>
+                <small>{study.members.join(' / ')}</small>
+              </article>
+            ))}
+          </div>
+        </section>
+      </Tooltip>
+      <Tooltip id="tip-home-activity" title="활동 로그" body="자료 등록, 검토 요청, 답글, 노드 활성화 같은 최근 활동을 요약합니다." requirement="백엔드 타임라인이 아니라 정적 preset-material-flow 데이터로 구성합니다.">
+        <section className="panel wide" tabIndex={0}>
+          <h2>활동 로그</h2>
+          <ul className="timeline">
+            {activities.map((activity) => (
+              <li key={activity.id}><span>{activity.text}</span><small>{activity.meta}</small></li>
+            ))}
+          </ul>
+        </section>
+      </Tooltip>
     </main>
   );
 }

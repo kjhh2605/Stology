@@ -1,28 +1,34 @@
-import { cloneElement, type ReactElement, type ReactNode } from 'react';
+import { cloneElement, type FocusEvent, type MouseEvent, type ReactElement, type ReactNode } from 'react';
 import { useTooltip } from './TooltipProvider';
+
+type TooltipTriggerProps = {
+  'aria-describedby'?: string;
+  onFocus?: (event: FocusEvent<HTMLElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLElement>) => void;
+  onMouseEnter?: (event: MouseEvent<HTMLElement>) => void;
+  onMouseLeave?: (event: MouseEvent<HTMLElement>) => void;
+};
 
 type TooltipProps = {
   id: string;
   title: string;
   body: string;
   requirement: string;
-  children: ReactElement<{ 'aria-describedby'?: string; onFocus?: () => void; onBlur?: () => void; onMouseEnter?: () => void; onMouseLeave?: () => void }>;
+  children: ReactElement<TooltipTriggerProps>;
 };
 
 export function Tooltip({ id, title, body, requirement, children }: TooltipProps) {
   const { show, hide } = useTooltip();
-  const open = (target: EventTarget | null) => {
-    if (target instanceof HTMLElement) {
-      show({ id, title, body, requirement, rect: target.getBoundingClientRect() });
-    }
+  const open = (target: HTMLElement) => {
+    show({ id, title, body, requirement, rect: target.getBoundingClientRect() });
   };
 
   return cloneElement(children, {
     'aria-describedby': id,
-    onFocus: (event: { currentTarget: EventTarget }) => open(event.currentTarget),
-    onBlur: hide,
-    onMouseEnter: (event: { currentTarget: EventTarget }) => open(event.currentTarget),
-    onMouseLeave: hide,
+    onFocus: (event: FocusEvent<HTMLElement>) => open(event.currentTarget),
+    onBlur: () => hide(),
+    onMouseEnter: (event: MouseEvent<HTMLElement>) => open(event.currentTarget),
+    onMouseLeave: () => hide(),
   });
 }
 

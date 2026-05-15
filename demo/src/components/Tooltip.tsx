@@ -33,5 +33,5 @@ export function Tooltip({ id, title, body, requirement, children }: TooltipProps
 }
 
 export function InfoLine({ children }: { children: ReactNode }) {
-  return <p className="info-line">{children}</p>;
+  return <p className="note-line">{children}</p>;
 }

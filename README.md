@@ -19,5 +19,7 @@ https://github.com/user-attachments/assets/73e7bd31-2795-41a6-b85d-555c3e2563cb
 * https://github.com/Yeachan-Heo/oh-my-codex
 * https://github.com/heygen-com/hyperframes
 
-
+## 산출물
+* 피그마 : https://www.figma.com/design/SSCK0wKWEc943emer8VNnJ/Stology_PM_Wireframe?node-id=0-1&p=f&t=bFdkXIwKaHEoKQ0L-0
+* 노션 : https://www.notion.so/makeus-challenge/10th-UMC-Xenon-IDEAS-33cb57f4596b80f8849bc89e5a1db163?p=35bb57f4596b80f2a4b7d4bb1a89d077&pm=c
 

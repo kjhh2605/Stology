@@ -1,7 +1,8 @@
 # Stology
 **| Stology는 스터디에서 쌓이는 다양한 자료들을 활용해 체계적인 스터디 운영 플로우를 제공합니다**
 
-https://github.com/user-attachments/assets/81ba15c1-2ce4-42e1-9cb7-2f6f3f1a24e2
+https://github.com/user-attachments/assets/73e7bd31-2795-41a6-b85d-555c3e2563cb
+
 
 ## 사용한 AI/제작 도구
 
@@ -14,3 +15,9 @@ https://github.com/user-attachments/assets/81ba15c1-2ce4-42e1-9cb7-2f6f3f1a24e2
 | Figma MCP | PM 와이어프레임 제작, 화면설계서 기준 화면 구조 정리 |
 | Notion MCP | 기획 자료 정리, 산출물 관리, 프로젝트 문서화 보조 |
 | AI 기반 문서/기획 보조 | MVP 범위 정리, 화면 흐름 점검, 용어와 산출물 일관성 검토 |
+
+* https://github.com/Yeachan-Heo/oh-my-codex
+* https://github.com/heygen-com/hyperframes
+
+
+

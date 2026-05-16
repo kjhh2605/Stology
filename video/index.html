@@ -640,7 +640,24 @@
         border-radius: 34px;
         background: rgba(255,255,255,0.78);
         border: 1px solid rgba(165,180,252,0.55);
+        box-shadow:
+          0 46px 88px rgba(49,46,129,0.16),
+          0 12px 0 rgba(49,46,129,0.04);
         overflow: hidden;
+      }
+
+      .graph-board::before {
+        content: "";
+        position: absolute;
+        left: 7%;
+        right: 7%;
+        bottom: 34px;
+        height: 190px;
+        z-index: 0;
+        border-radius: 50%;
+        background:
+          radial-gradient(ellipse at center, rgba(79,70,229,0.14), rgba(165,180,252,0.06) 52%, transparent 72%);
+        transform: skewX(-12deg) rotate(-2deg);
       }
 
       .graph-svg {
@@ -660,39 +677,59 @@
 
       .relation-label {
         position: absolute;
-        z-index: 3;
-        padding: 9px 14px;
+        z-index: 4;
+        padding: 10px 15px;
         border-radius: 999px;
         color: var(--indigo);
-        background: #ffffff;
+        background: rgba(255,255,255,0.92);
         border: 1px solid var(--soft-line);
-        font-size: 20px;
+        font-size: 18px;
+        line-height: 1.08;
         font-weight: 800;
-        box-shadow: 0 12px 32px rgba(49,46,129,0.1);
+        box-shadow: 0 14px 34px rgba(49,46,129,0.12);
+        backdrop-filter: blur(8px);
+      }
+
+      .relation-label span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.03em;
       }
 
       .graph-node {
         position: absolute;
-        z-index: 2;
-        min-width: 150px;
-        padding: 18px 22px;
-        border-radius: 24px;
+        z-index: 3;
+        --node-fill: #eef2ff;
+        width: 150px;
+        height: 150px;
+        padding: 0 16px;
+        border-radius: 50%;
         display: grid;
         place-items: center;
+        text-align: center;
         color: var(--indigo);
-        background: #eef2ff;
+        background: var(--node-fill);
         border: 2px solid var(--periwinkle);
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 850;
+        line-height: 1.18;
         letter-spacing: -0.035em;
-        box-shadow: 0 18px 54px rgba(49,46,129,0.1);
+        box-shadow: 0 20px 38px rgba(49,46,129,0.14);
       }
 
       .node-active {
+        --node-fill: #4f46e5;
         color: #ffffff;
-        background: var(--indigo);
         border-color: var(--action);
       }
+
+      .node-lg { width: 188px; height: 188px; font-size: 27px; }
+      .node-md { width: 150px; height: 150px; font-size: 22px; }
+      .node-sm { width: 130px; height: 130px; font-size: 20px; }
+      .node-xs { width: 118px; height: 118px; font-size: 18px; }
 
       /* Scene 06 */
       .s06 .scene-content {
@@ -700,16 +737,38 @@
         gap: 28px;
       }
 
-      .s06 .graph-board { flex: 1; }
-      .g-club { left: 790px; top: 270px; }
-      .g-study { left: 450px; top: 150px; }
-      .g-project { left: 1160px; top: 160px; }
-      .g-meeting { left: 380px; top: 480px; }
-      .g-member { left: 820px; top: 570px; }
-      .g-portfolio { left: 1180px; top: 500px; }
-      .rl1 { left: 632px; top: 245px; }
-      .rl2 { left: 620px; top: 440px; }
-      .rl3 { left: 1086px; top: 428px; }
+      .s06 .graph-board {
+        flex: none;
+        height: 650px;
+        background:
+          linear-gradient(160deg, rgba(255,255,255,0.96), rgba(238,242,255,0.86)),
+          radial-gradient(circle at 50% 45%, rgba(199,210,254,0.24), transparent 52%),
+          rgba(255,255,255,0.8);
+      }
+
+      .s06 .graph-board::before {
+        background:
+          radial-gradient(ellipse at center, rgba(79,70,229,0.08), rgba(165,180,252,0.04) 54%, transparent 74%);
+      }
+
+      .s06 .edge {
+        stroke-width: 6;
+        opacity: 0.72;
+      }
+
+      .g-java { left: 785px; top: 45px; }
+      .g-spring { left: 766px; top: 226px; }
+      .g-di { left: 445px; top: 420px; }
+      .g-ioc { left: 1075px; top: 420px; }
+      .g-django { left: 285px; top: 145px; }
+      .g-boot { left: 1265px; top: 145px; }
+      .g-rest { left: 1316px; top: 524px; }
+      .rl1 { left: 908px; top: 162px; }
+      .rl2 { left: 610px; top: 402px; }
+      .rl3 { left: 1000px; top: 402px; }
+      .rl4 { left: 510px; top: 224px; }
+      .rl5 { left: 1120px; top: 242px; }
+      .rl6 { left: 1248px; top: 440px; }
 
       /* Scene 07 */
       .feature-scene .scene-content {
@@ -922,28 +981,54 @@
 
       .knowledge-graph {
         height: 710px;
+        background:
+          linear-gradient(160deg, rgba(255,255,255,0.96), rgba(238,242,255,0.86)),
+          radial-gradient(circle at 42% 45%, rgba(199,210,254,0.23), transparent 50%),
+          rgba(255,255,255,0.82);
+      }
+
+      .knowledge-graph .edge {
+        stroke-width: 4.5;
+        opacity: 0.68;
       }
 
       .knowledge-graph .evidence-panel {
         position: absolute;
         right: 30px;
         bottom: 30px;
-        width: 292px;
-        padding: 24px;
+        width: 334px;
+        padding: 24px 24px 22px;
         border-radius: 24px;
         border-top-width: 6px;
         box-shadow: 0 22px 60px rgba(49,46,129,0.14);
-        z-index: 4;
+        z-index: 5;
       }
 
       .knowledge-graph .evidence-panel h3 {
-        font-size: 22px;
+        font-size: 24px;
         line-height: 1.25;
       }
 
-      .knowledge-graph .evidence-panel p {
+      .evidence-row {
         margin-top: 12px;
-        font-size: 15px;
+        display: grid;
+        grid-template-columns: 76px 1fr;
+        gap: 12px;
+        align-items: start;
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.34;
+      }
+
+      .evidence-row span {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .evidence-row strong {
+        color: var(--indigo);
+        font-weight: 920;
       }
 
       .knowledge-graph .filter-track {
@@ -958,17 +1043,47 @@
       }
 
       .kg-node {
-        filter: saturate(0.35);
+        --node-fill: #f3f4f6;
+        filter: saturate(0.35) brightness(1.05);
+        opacity: 0.82;
         color: #94a3b8;
-        background: #f3f4f6;
         border-color: #e5e7eb;
-        box-shadow: none;
+        box-shadow: 0 14px 30px rgba(49,46,129,0.1);
       }
 
       .kg-node.node-active {
+        --node-fill: #f3f4f6;
+        opacity: 1;
         color: #94a3b8;
-        background: #f3f4f6;
         border-color: #e5e7eb;
+      }
+
+      .knowledge-graph .node-lg { width: 138px; height: 138px; font-size: 21px; }
+      .knowledge-graph .node-md { width: 116px; height: 116px; font-size: 18px; }
+      .knowledge-graph .node-sm { width: 98px; height: 98px; font-size: 16px; }
+      .knowledge-graph .node-xs { width: 90px; height: 90px; font-size: 15px; }
+      .kg-java { left: 392px; top: 34px; }
+      .kg-spring { left: 381px; top: 246px; }
+      .kg-di { left: 122px; top: 442px; }
+      .kg-ioc { left: 587px; top: 424px; }
+      .kg-django { left: 101px; top: 181px; }
+      .kg-boot { left: 761px; top: 141px; }
+      .kg-rest { left: 575px; top: 575px; }
+      .kg-rl1 { left: 486px; top: 152px; }
+      .kg-rl2 { left: 274px; top: 430px; }
+      .kg-rl3 { left: 556px; top: 390px; }
+      .kg-rl4 { left: 266px; top: 256px; }
+      .kg-rl5 { left: 665px; top: 238px; }
+      .kg-rl6 { left: 500px; top: 534px; }
+
+      .knowledge-graph .relation-label {
+        font-size: 14px;
+        padding: 8px 11px;
+        box-shadow: 0 10px 24px rgba(49,46,129,0.1);
+      }
+
+      .knowledge-graph .relation-label span {
+        font-size: 9px;
       }
 
       .evidence-panel {
@@ -1690,16 +1805,29 @@
       <section id="scene-06" class="clip scene s06" data-start="22" data-duration="5" data-track-index="1" style="z-index: 2">
         <div class="brand">Stology</div>
         <div class="scene-content">
-          <h2 class="headline">개념은 노드로,<br>관계는 연결선으로.</h2>
+          <h2 class="headline">개념을 관계 그래프로 읽습니다.</h2>
           <div class="graph-board">
             <svg class="graph-svg" viewBox="0 0 1720 650" data-layout-ignore="">
-              <path class="edge e6-1" d="M860 300 L540 180" /><path class="edge e6-2" d="M860 300 L1250 190" />
-              <path class="edge e6-3" d="M860 300 L490 505" /><path class="edge e6-4" d="M860 300 L910 590" />
-              <path class="edge e6-5" d="M1250 190 L1280 520" /><path class="edge e6-6" d="M1250 190 L910 590" />
+              <path class="edge e6-1" d="M860 320 L860 120" />
+              <path class="edge e6-2" d="M860 320 L520 495" />
+              <path class="edge e6-3" d="M860 320 L1150 495" />
+              <path class="edge e6-4" d="M860 320 L350 210" />
+              <path class="edge e6-5" d="M860 320 L1330 210" />
+              <path class="edge e6-6" d="M860 320 L1375 583" />
             </svg>
-            <div class="graph-node node-active g-club">동아리</div><div class="graph-node g-study">스터디</div><div class="graph-node g-project">프로젝트</div>
-            <div class="graph-node g-meeting">회의록</div><div class="graph-node g-member">멤버</div><div class="graph-node g-portfolio">포트폴리오</div>
-            <div class="relation-label rl1">포함한다</div><div class="relation-label rl2">남긴다</div><div class="relation-label rl3">근거가 된다</div>
+            <div class="graph-node node-md g-java">Java 생태계</div>
+            <div class="graph-node node-active node-lg g-spring">Spring</div>
+            <div class="graph-node node-md g-di">의존성 주입</div>
+            <div class="graph-node node-md g-ioc">IoC 컨테이너</div>
+            <div class="graph-node node-sm g-django">Django</div>
+            <div class="graph-node node-sm g-boot">Spring Boot</div>
+            <div class="graph-node node-xs g-rest">REST API</div>
+            <div class="relation-label rl1">상위개념</div>
+            <div class="relation-label rl2">기반개념</div>
+            <div class="relation-label rl3">기반개념</div>
+            <div class="relation-label rl4">대조개념</div>
+            <div class="relation-label rl5">확장개념</div>
+            <div class="relation-label rl6">맥락개념</div>
           </div>
         </div>
       </section>
@@ -1707,10 +1835,10 @@
       <section id="scene-07" class="clip scene feature-scene s07" data-start="27" data-duration="5" data-track-index="1" style="z-index: 2">
         <div class="brand">Stology</div>
         <div class="scene-content">
-          <div class="feature-copy"><div class="step-num">01</div><h2 class="headline">매주 하던 대로,<br>그냥 올리세요.</h2><p class="small-copy">마크다운 자료를 업로드하면 주차가 자동 분류되고, AI 추출이 바로 시작됩니다.</p></div>
+          <div class="feature-copy"><div class="step-num">01</div><h2 class="headline">학습 자료를 업로드하세요</h2><p class="small-copy">마크다운 자료를 업로드하면 주차가 자동 분류되고, AI 추출이 바로 시작됩니다.</p></div>
           <div class="mockup">
-            <div class="browser-bar">stology.app / spring-boot / 자료 업로드</div>
-            <div class="upload-zone">드래그앤드롭 또는 직접 입력</div>
+            <div class="browser-bar">자료 업로드</div>
+            <div class="upload-zone">스터디자료를 올리세요</div>
             <div class="upload-file"></div>
             <div class="tag-week">5주차 자동 분류</div>
             <div class="ai-loader"><span class="pulse-dot"></span><span>AI 추출 시작</span></div>
@@ -1724,7 +1852,7 @@
           <div class="feature-copy"><div class="step-num">02</div><h2 class="headline">AI가 제안하고,<br>팀이 검토합니다.</h2><p class="small-copy">후보 개념을 실제 검토 화면처럼 일괄 선택하고 승인·거절합니다.</p></div>
           <div class="review-screen">
             <div class="review-meta">
-              <div class="review-meta-item"><span>자료 제목</span><strong>회귀분석 모델 성능 비교.pdf</strong></div>
+              <div class="review-meta-item"><span>자료 제목</span><strong>Spring DI와 IoC 컨테이너 정리.md</strong></div>
               <div class="review-meta-item"><span>제출자</span><strong>박수현</strong></div>
               <div class="review-meta-item"><span>업로드일</span><strong>2024.05.13 14:32</strong></div>
               <div class="review-meta-item"><span>주차</span><strong>5주차</strong></div>
@@ -1736,11 +1864,11 @@
               <div class="green-action">전체 승인</div>
             </div>
             <div class="review-list">
-              <div class="review-row rr1"><div class="row-check active">✓</div><div class="candidate-title">회귀 분석 <span>시험한 공개 · 테스트셋 데이터의 변수 영향 분석</span></div><div class="review-small">승인 2명<span>김지민, 이은호</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
-              <div class="review-row rr2"><div class="row-check active">✓</div><div class="candidate-title">모델 평가 <span>RMSE, MAE, R-squared 등 모델 지표</span></div><div class="review-small">승인 2명<span>김지민, 박수현</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
-              <div class="review-row rr3"><div class="row-check active">✓</div><div class="candidate-title">선형 모델 <span>선형 모델의 가정과 잔차 분석</span></div><div class="review-small">승인 1명<span>김지민</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
-              <div class="review-row rr4"><div class="row-check">✓</div><div class="candidate-title">시계열 분석 <span>시간 흐름에 따른 계절성 개념 후보</span></div><div class="review-small">승인 0명</div><div class="review-small">거절 1명<span>이도윤</span></div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
-              <div class="review-row rr5"><div class="row-check active">✓</div><div class="candidate-title">정규화 <span>L1, L2 규제와 과대적합 방지</span></div><div class="review-small">승인 1명<span>박수현</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
+              <div class="review-row rr1"><div class="row-check active">✓</div><div class="candidate-title">Spring Framework <span>Java 기반 애플리케이션 프레임워크</span></div><div class="review-small">승인 2명<span>김지민, 이은호</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
+              <div class="review-row rr2"><div class="row-check active">✓</div><div class="candidate-title">의존성 주입 <span>객체 의존 관계를 외부에서 주입하는 패턴</span></div><div class="review-small">승인 2명<span>김지민, 박수현</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
+              <div class="review-row rr3"><div class="row-check active">✓</div><div class="candidate-title">IoC 컨테이너 <span>Bean 생성과 생명주기를 관리하는 컨테이너</span></div><div class="review-small">승인 1명<span>김지민</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
+              <div class="review-row rr4"><div class="row-check">✓</div><div class="candidate-title">Django <span>Spring과 대조되는 Python 웹 프레임워크 후보</span></div><div class="review-small">승인 0명</div><div class="review-small">거절 1명<span>이도윤</span></div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
+              <div class="review-row rr5"><div class="row-check active">✓</div><div class="candidate-title">Spring Boot <span>자동 설정과 내장 서버로 빠른 프로젝트 구성</span></div><div class="review-small">승인 1명<span>박수현</span></div><div class="review-small">거절 0명</div><div class="row-actions"><div class="approve-btn">승인</div><div class="reject-btn">거절</div></div><div class="chevron">›</div></div>
             </div>
           </div>
         </div>
@@ -1751,21 +1879,32 @@
         <div class="scene-content">
           <div class="feature-copy"><div class="step-num">03</div><h2 class="headline">자료가 쌓일수록,<br>지식이<br>선명해집니다.</h2><p class="small-copy">노드를 클릭하면 근거 자료와<br>주차별 흐름이 드러납니다.</p></div>
           <div class="graph-board knowledge-graph">
-            <svg class="graph-svg" viewBox="0 0 1180 710" data-layout-ignore="">
-              <path class="edge e9-1" d="M565 300 L280 170" /><path class="edge e9-2" d="M565 300 L890 150" /><path class="edge e9-3" d="M565 300 L330 540" />
-              <path class="edge e9-4" d="M565 300 L880 402" /><path class="edge e9-5" d="M565 300 L620 610" />
+            <svg class="graph-svg" viewBox="0 0 1086 710" data-layout-ignore="">
+              <path class="edge e9-1" d="M450 315 L450 92" />
+              <path class="edge e9-2" d="M450 315 L180 500" />
+              <path class="edge e9-3" d="M450 315 L645 482" />
+              <path class="edge e9-4" d="M450 315 L150 230" />
+              <path class="edge e9-5" d="M450 315 L810 190" />
+              <path class="edge e9-6" d="M450 315 L620 620" />
             </svg>
-            <div class="graph-node kg-node node-active" style="left:500px; top:270px;">의존성 주입</div>
-            <div class="graph-node kg-node" style="left:210px; top:130px;">Spring Bean</div>
-            <div class="graph-node kg-node" style="left:810px; top:110px;">IoC Container</div>
-            <div class="graph-node kg-node" style="left:250px; top:500px;">AOP</div>
-            <div class="graph-node kg-node" style="left:800px; top:365px;">JPA 영속성</div>
-            <div class="graph-node kg-node" style="left:560px; top:605px;">Bean Lifecycle</div>
+            <div class="graph-node kg-node node-md kg-java">Java 생태계</div>
+            <div class="graph-node kg-node node-active node-lg kg-spring">Spring</div>
+            <div class="graph-node kg-node node-md kg-di">의존성 주입</div>
+            <div class="graph-node kg-node node-md kg-ioc">IoC 컨테이너</div>
+            <div class="graph-node kg-node node-sm kg-django">Django</div>
+            <div class="graph-node kg-node node-sm kg-boot">Spring Boot</div>
+            <div class="graph-node kg-node node-xs kg-rest">REST API</div>
+            <div class="relation-label kg-rl1">상위개념</div>
+            <div class="relation-label kg-rl2">기반개념</div>
+            <div class="relation-label kg-rl3">기반개념</div>
+            <div class="relation-label kg-rl4">대조개념</div>
+            <div class="relation-label kg-rl5">확장개념</div>
+            <div class="relation-label kg-rl6">맥락개념</div>
             <div class="evidence-panel">
-              <h3>Evidence<br>자료 3건</h3>
-              <p>AOP 개념정리.md<br>5주차 회고.md<br>PR #42 구현 근거</p>
-              <div class="filter-track"><div class="filter-thumb"></div></div>
-              <p>1주차 → 5주차</p>
+              <h3>선택한 노드</h3>
+              <div class="evidence-row"><span>개념</span><strong>Spring</strong></div>
+              <div class="evidence-row"><span>설명</span><div>Java 기반 애플리케이션을 빠르게 구성하는 프레임워크입니다.</div></div>
+              <div class="evidence-row"><span>관련 노드</span><div>Java 생태계 · 의존성 주입 · Spring Boot · REST API</div></div>
             </div>
           </div>
         </div>
@@ -1805,8 +1944,8 @@
           <div class="roadmap">
             <div class="road-line"></div>
             <div class="road-card rd1"><div class="road-icon">🧭</div><div class="road-title">운영진 온톨로지<br>커스터마이징</div><div class="road-copy">파트별 지식 지도를 직접 확장합니다.</div></div>
-            <div class="road-card rd2"><div class="road-icon">🔌</div><div class="road-title">Stology<br>MCP 서버</div><div class="road-copy">동아리 지식이 AI 도구로 흐릅니다.</div></div>
-            <div class="road-card rd3"><div class="road-icon">🔗</div><div class="road-title">스터디·프로젝트<br>연동</div><div class="road-copy">학습이 구현으로, 구현이 회고로 이어집니다.</div></div>
+            <div class="road-card rd2"><div class="road-icon">🤖</div><div class="road-title">AI 도구<br>지식 활용</div><div class="road-copy">검토된 지식 그래프를 AI가 맥락으로 활용합니다.</div></div>
+            <div class="road-card rd3"><div class="road-icon">🧩</div><div class="road-title">프로젝트<br>온톨로지 제공</div><div class="road-copy">프로젝트의 진행 과정을 기록합니다.</div></div>
             <div class="road-card rd4"><div class="road-icon">🎓</div><div class="road-title">개인<br>온톨로지</div><div class="road-copy">개인의 지식이 구조화됩니다.</div></div>
           </div>
         </div>
@@ -1830,7 +1969,7 @@
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
 
       gsap.set(".edge", { strokeDasharray: 900, strokeDashoffset: 900 });
-      gsap.set("#scene-09 .edge", { strokeDasharray: "none", strokeDashoffset: 0 });
+      gsap.set("#scene-06 .edge, #scene-09 .edge", { strokeDasharray: "none", strokeDashoffset: 0 });
       gsap.set("#scene-05 .mini-edge", { strokeDasharray: 180, strokeDashoffset: 180 });
       gsap.set("#scene-01 .stream-path", { strokeDasharray: 420, strokeDashoffset: 420 });
       gsap.set("#scene-04 .final-word", { opacity: 0, scale: 0.92 });
@@ -1873,10 +2012,10 @@
         .to("#scene-05 .scene-content", { opacity: 0, duration: 0.38, ease: "power2.in" }, 21.58);
 
       tl.from("#scene-06 .headline", { opacity: 0, y: 28, duration: 0.48 }, 22.08)
-        .from("#scene-06 .graph-board", { opacity: 0, y: 36, scale: 0.985, duration: 0.58 }, 22.42)
-        .from("#scene-06 .graph-node", { opacity: 0, scale: 0.75, y: 18, duration: 0.45, stagger: 0.09, ease: "back.out(1.25)" }, 22.92)
-        .to("#scene-06 .edge", { strokeDashoffset: 0, duration: 1.1, stagger: 0.1, ease: "power2.inOut" }, 23.34)
-        .from("#scene-06 .relation-label", { opacity: 0, y: 12, duration: 0.35, stagger: 0.18 }, 24.18)
+        .from("#scene-06 .graph-board", { y: 36, scale: 0.985, duration: 0.58 }, 22.42)
+        .from("#scene-06 .graph-node", { boxShadow: "0 10px 18px rgba(49,46,129,0.08)", duration: 0.5, stagger: 0.07 }, 22.72)
+        .from("#scene-06 .relation-label", { opacity: 0, y: 12, duration: 0.35, stagger: 0.14 }, 23.18)
+        .to("#scene-06 .node-active", { scale: 1.07, duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, 24.35)
         .to("#scene-06 .graph-board", { rotation: 1.2, scale: 0.992, duration: 1.15, ease: "sine.inOut" }, 25.15)
         .to("#scene-06 .scene-content", { opacity: 0, duration: 0.34, ease: "power2.in" }, 26.62);
 
@@ -1919,12 +2058,16 @@
 
       tl.from("#scene-09 .feature-copy > *", { opacity: 0, y: 28, duration: 0.45, stagger: 0.12 }, 38.08)
         .from("#scene-09 .knowledge-graph", { opacity: 0, x: 54, duration: 0.55 }, 38.22)
-        .from("#scene-09 .evidence-panel", { opacity: 0, y: 22, duration: 0.42 }, 39.9)
-        .to("#scene-09 .kg-node", { filter: "saturate(1)", color: "#312e81", backgroundColor: "#c7d2fe", borderColor: "#a5b4fc", boxShadow: "0 18px 54px rgba(49,46,129,0.1)", duration: 0.55, stagger: 0.16 }, 39.05)
-        .to("#scene-09 .kg-node.node-active", { backgroundColor: "#312e81", color: "#ffffff", scale: 1.08, duration: 0.45 }, 40.38)
-        .from("#scene-09 .evidence-panel p", { opacity: 0, y: 18, duration: 0.42, stagger: 0.16 }, 40.82)
-        .from("#scene-09 .filter-track", { opacity: 0, y: 18, duration: 0.36 }, 41.58)
-        .to("#scene-09 .filter-thumb", { x: 210, duration: 0.9, ease: "power3.inOut" }, 41.88)
+        .from("#scene-09 .relation-label", { opacity: 0, y: 10, duration: 0.32, stagger: 0.08 }, 38.72)
+        .to("#scene-09 .kg-boot", { "--node-fill": "#c7d2fe", filter: "saturate(1.08) brightness(1)", opacity: 1, color: "#312e81", borderColor: "#818cf8", duration: 0.58 }, 39.02)
+        .to("#scene-09 .kg-di", { "--node-fill": "#dbe4ff", filter: "saturate(0.95) brightness(1.02)", opacity: 0.98, color: "#37308a", borderColor: "#a5b4fc", duration: 0.54 }, 39.18)
+        .to("#scene-09 .kg-java", { "--node-fill": "#edf1ff", filter: "saturate(0.82) brightness(1.04)", opacity: 0.92, color: "#4b5563", borderColor: "#c7d2fe", duration: 0.5 }, 39.38)
+        .to("#scene-09 .kg-rest", { "--node-fill": "#d1d9ff", filter: "saturate(1.0) brightness(1)", opacity: 1, color: "#312e81", borderColor: "#a5b4fc", duration: 0.55 }, 39.52)
+        .to("#scene-09 .kg-django", { "--node-fill": "#f0f3ff", filter: "saturate(0.7) brightness(1.05)", opacity: 0.9, color: "#64748b", borderColor: "#dbe3f0", duration: 0.48 }, 39.74)
+        .to("#scene-09 .kg-ioc", { "--node-fill": "#bac7ff", filter: "saturate(1.12) brightness(0.99)", opacity: 1, color: "#312e81", borderColor: "#818cf8", duration: 0.6 }, 39.9)
+        .to("#scene-09 .kg-node.node-active", { "--node-fill": "#4f46e5", color: "#ffffff", borderColor: "#4f46e5", scale: 1.08, duration: 0.45 }, 40.38)
+        .from("#scene-09 .evidence-panel", { opacity: 0, y: 22, duration: 0.42 }, 40.58)
+        .from("#scene-09 .evidence-row", { opacity: 0, y: 12, duration: 0.34, stagger: 0.14 }, 40.92)
         .to("#scene-09 .scene-content", { opacity: 0, duration: 0.36, ease: "power2.in" }, 43.58);
 
       tl.from("#scene-10 .report-screen", { opacity: 0, y: 34, scale: 0.988, duration: 0.55 }, 44.08)
@@ -1940,8 +2083,8 @@
         .to("#scene-10 .scene-content", { opacity: 0, duration: 0.34, ease: "power2.in" }, 48.62);
 
       tl.from("#scene-11 .headline", { opacity: 0, y: 30, duration: 0.52 }, 49.08)
-        .from("#scene-11 .road-line", { scaleX: 0, duration: 3.95, ease: "power2.inOut" }, 49.72)
-        .from("#scene-11 .road-card", { opacity: 0, y: 38, duration: 0.56, stagger: 1.12 }, 50.05)
+        .from("#scene-11 .road-line", { scaleX: 0, duration: 3.7, ease: "power2.inOut" }, 49.72)
+        .from("#scene-11 .road-card", { opacity: 0, y: 38, duration: 0.56, stagger: { each: 1.05, from: "start" } }, 50.05)
         .to("#scene-11 .scene-content", { opacity: 0, duration: 0.42, ease: "power2.in" }, 54.48);
 
       tl.to("#scene-12 .bg-edge", { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 55.12)

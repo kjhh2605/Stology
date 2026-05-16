@@ -41,7 +41,8 @@
 │   └── renders/                      # 렌더링 결과물(mp4 등)
 ├── ai-skills/                        # 프로젝트 진행 중 만든 AI 스킬 보관본(로컬/ignored 산출물)
 │   ├── AGENTS.md                     # 스킬 보관본 관리 지침
-│   └── figma-pm-wireframe/
+│   ├── agents-md-sync/               # AGENTS.md 최신화/검수 스킬 보관본
+│   └── figma-pm-wireframe/           # Figma PM 와이어프레임 제작/검수 스킬 보관본
 └── .omx/                             # oh-my-codex 런타임 상태/로그(수동 편집 금지)
 ```
 

@@ -1,6 +1,6 @@
 ---
 name: figma-pm-wireframe
-description: "Create or revise PM-facing Figma wireframe specification artifacts for any digital product: screen-spec wireframes with individually editable numbered callouts, Description tables, user-flow notes, feature/case frames, legacy-wireframe reuse, graph or relationship connectors when needed, and final visual QA for callout/Description matching, text overflow, click blocking, and unintended overlaps."
+description: "Create or revise PM-facing Figma wireframe specification artifacts for any digital product: screen-spec wireframes with individually editable numbered callouts, Description tables, user-flow notes, feature/case frames, legacy-wireframe reuse, individually editable graph or relationship edges when needed, and final visual QA for callout/Description matching, text overflow, click blocking, and unintended overlaps."
 ---
 
 # Figma PM Wireframe
@@ -172,8 +172,9 @@ For numbered callouts:
 
 For relationship/graph/canvas screens:
 
-- Add connector lines in a frame named `Graph Connectors` or another clear connector layer name.
-- Keep connectors above the canvas background and below node labels/callouts.
+- Add each connector as its own unlocked direct layer named `Graph Edge 1`, `Graph Edge 2`, etc.
+- Do not leave all connectors inside one `Graph Connectors` frame/group in the final file. Users should be able to select and adjust each edge independently.
+- Keep graph edges above the canvas background and below node labels/callouts.
 - Make relationship states visually distinct when the docs require it, such as selected, related, active, inactive, source, target, warning, or disabled.
 
 ## Description Writing
@@ -216,7 +217,7 @@ Required checks:
 - Visible text does not unintentionally overlap.
 - Shared navigation/header/tabs are consistent across related screens.
 - Pre-auth and post-auth layouts do not accidentally mix states.
-- Relationship/graph/canvas screens have visible connectors when connectors are part of the product concept.
+- Relationship/graph/canvas screens have visible individually editable `Graph Edge N` layers when connectors are part of the product concept.
 - Modal foreground text is not confused with background screen text; use an opaque card/backdrop.
 - If an automated overlap check reports modal/background coordinate collisions, confirm with screenshots that the foreground card/backdrop actually hides the background content.
 - Final screenshots cover at least:
@@ -237,7 +238,7 @@ Report final evidence with counts, for example:
 - 빨간 번호가 텍스트를 덮는 문제: 0건
 - 텍스트 프레임 이탈: 0건
 - 실제 보이는 텍스트 겹침: 0건
-- 연결선 적용 화면: N개, 해당 시
+- 개별 편집 가능한 연결선: N개, 해당 시
 ```
 
 ## Delivery

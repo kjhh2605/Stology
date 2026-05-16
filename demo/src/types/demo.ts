@@ -1,10 +1,10 @@
-export type DemoRoute = 'home' | 'createStudy' | 'invite' | 'study' | 'review';
+export type DemoRoute = 'home' | 'study' | 'review';
 export type StudyTab = 'knowledge' | 'upload' | 'records' | 'report' | 'questions';
+export type HomeModal = 'createStudy' | 'invite' | null;
+export type ReviewDecision = 'approve' | 'reject' | null;
 
 export type AppScreen =
   | { route: 'home' }
-  | { route: 'createStudy' }
-  | { route: 'invite' }
   | { route: 'study'; tab: StudyTab }
   | { route: 'review'; materialId: '자료1' };
 
@@ -35,6 +35,8 @@ export type WeekRecord = { week: string; title: string; summary: string; materia
 
 export type DemoState = {
   screen: AppScreen;
+  homeModal: HomeModal;
+  reviewDecision: ReviewDecision;
   approvedConceptIds: string[];
   rejectedConceptIds: string[];
   draftQuestionOpen: boolean;

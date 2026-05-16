@@ -3,6 +3,8 @@ import { baseConcepts } from '../data/demoData';
 
 export const initialState: DemoState = {
   screen: { route: 'home' },
+  homeModal: null,
+  reviewDecision: null,
   approvedConceptIds: [],
   rejectedConceptIds: [],
   draftQuestionOpen: false,

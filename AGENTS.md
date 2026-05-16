@@ -1,6 +1,8 @@
 # Stology 프로젝트 작업 지침
 
-이 파일은 `/Users/gnar/Desktop/Stology` 루트와 하위 폴더 전체에 적용되는 Codex/AI 에이전트용 프로젝트 관리 지침입니다. 더 하위 폴더에 별도 `AGENTS.md`가 있으면 해당 폴더에서는 하위 지침을 우선합니다. 현재 `video/AGENTS.md`가 HyperFrames 영상 작업 규칙을 별도로 정의합니다.
+이 파일은 `/Users/gnar/Desktop/Stology` 루트와 하위 폴더 전체에 적용되는 Codex/AI 에이전트용 공통 프로젝트 관리 지침입니다. 더 하위 폴더에 별도 `AGENTS.md`가 있으면 해당 폴더에서는 하위 지침을 함께 읽고, 더 구체적인 하위 지침을 우선합니다.
+
+루트 `AGENTS.md`는 프로젝트 범위, 산출물 경계, 검증 원칙을 관리합니다. 문서 작성, 데모 구현, 영상 제작처럼 모듈별 실행 방식은 각 모듈의 `AGENTS.md`에 둡니다.
 
 ## 프로젝트 개요
 
@@ -9,76 +11,67 @@
 - 핵심 컨셉: `Study + Ontology` — 흩어진 학습자료를 AI 후보 추출, 팀 검토, 공통 온톨로지 기반 지식 구조, 주차별 리포트로 연결
 - 주요 산출물:
   - 제품 기획/와이어프레임 문서
-  - 브랜드 이미지 에셋
+  - React/Vite 기반 정적 데모사이트
   - HyperFrames 기반 60초 소개 영상
+  - 작업 과정에서 만든 AI 스킬 보관본
 
 ## 현재 폴더 구조
 
 ```text
 .
 ├── README.md                         # 프로젝트 한 줄 소개 및 링크
-├── AGENTS.md                         # 루트 작업 지침(현재 파일)
-├── Brand_Assets/                     # 브랜드/캐릭터/커버 이미지 에셋
-│   ├── notion_cover.png
-│   ├── notion_cover_vertical.png
-│   └── character/                    # 캐릭터 이미지 원본
-├── ai-skills/                        # 프로젝트 진행 중 만든 AI 스킬 보관본
-│   └── figma-pm-wireframe/
-│       └── SKILL.md                  # PM 와이어프레임 제작 스킬 복제본
+├── AGENTS.md                         # 루트 공통 프로젝트 관리 지침
 ├── docs/                             # 제품 기획 및 화면 요구사항 문서
+│   ├── AGENTS.md                     # 문서 작업 전용 지침
 │   ├── 기획안.md                     # 서비스 배경, 목표, MVP 범위
 │   ├── 화면설계서.md                 # PM 관점 화면 정보/와이어프레임/디스크립션 산출물
 │   ├── 변경사항/합의_0514.md         # 합의/변경 이력
 │   └── wire_frame_requirements/      # 화면별 와이어프레임 명세
-│       ├── 00-index.md               # 문서 인덱스 및 화면 흐름
-│       ├── 01-login.md
-│       ├── 02-home.md
-│       ├── 03-study-knowledge.md
-│       ├── 04-study-upload.md
-│       ├── 05-study-records.md
-│       ├── 06-study-report.md
-│       ├── 07-study-container.md
-│       ├── 08-study-questions.md
-│       └── 09-review-screen.md
 ├── demo/                             # React/Vite 기반 Stology 데모사이트
+│   ├── AGENTS.md                     # 데모 구현/검증 전용 지침
 │   ├── docs/traceability.md          # 요구사항-구현-검증 매핑
 │   ├── src/                          # 화면, 컴포넌트, 정적 데모 데이터
 │   ├── package.json                  # 데모 실행/검증 명령
 │   └── package-lock.json             # 데모 의존성 잠금
-├── video/                            # HyperFrames 영상 프로젝트
+├── video/                            # HyperFrames 영상 프로젝트(로컬/ignored 산출물)
 │   ├── AGENTS.md                     # 영상 작업 전용 지침
 │   ├── DESIGN.md                     # 영상 디자인 소스 오브 트루스
 │   ├── index.html                    # 메인 HyperFrames 컴포지션
 │   ├── package.json                  # 영상 preview/check/render/publish 명령
-│   ├── assets/                       # 영상용 이미지/오디오/PDF 변환 에셋
 │   └── renders/                      # 렌더링 결과물(mp4 등)
+├── ai-skills/                        # 프로젝트 진행 중 만든 AI 스킬 보관본(로컬/ignored 산출물)
+│   ├── AGENTS.md                     # 스킬 보관본 관리 지침
+│   └── figma-pm-wireframe/
 └── .omx/                             # oh-my-codex 런타임 상태/로그(수동 편집 금지)
 ```
 
-## 에이전트 작업 원칙
+참고: `Brand_Assets/`는 `.git/info/exclude`에 로컬 보관 폴더로 등록되어 있을 수 있습니다. 해당 폴더가 있는 환경에서는 원본 이미지와 캐릭터/커버 에셋을 명시 요청 없이 덮어쓰지 말고, 파생본은 새 이름으로 저장합니다.
+
+## 지침 우선순위
+
+1. 사용자 요청과 시스템/개발자 지침을 최우선으로 따릅니다.
+2. 작업 대상 파일에 더 가까운 하위 `AGENTS.md`가 있으면 함께 따릅니다.
+3. 제품/화면 판단은 `docs/`의 기획·화면 요구사항을 근거로 합니다.
+4. 기존 작업물이 있는 파일은 변경 전 현재 상태를 확인하고, 요청 범위 밖 변경이나 되돌리기를 하지 않습니다.
+
+## 모듈별 진입점
+
+- 제품 문서/와이어프레임 명세: `docs/AGENTS.md`
+- 데모사이트 구현: `demo/AGENTS.md`
+- 영상/HyperFrames 작업: `video/AGENTS.md`와 `video/DESIGN.md`
+- AI 스킬 보관본: `ai-skills/AGENTS.md`
+
+## 에이전트 공통 원칙
 
 1. **한국어 우선**: 사용자 응답, 문서 추가, 요약은 기본적으로 한국어로 작성합니다. 코드/CLI/API 명칭은 원문을 유지합니다.
-2. **문서 먼저 확인**: 제품/화면 관련 작업은 아래 순서로 근거를 확인합니다.
-   - `docs/기획안.md`
-   - `docs/변경사항/합의_0514.md`
-   - `docs/wire_frame_requirements/00-index.md`
-   - 필요한 화면별 `docs/wire_frame_requirements/0X-*.md`
+2. **근거 먼저 확인**: 제품 범위, 화면 흐름, 데모 동작, 영상 메시지는 관련 문서를 확인한 뒤 수정합니다.
 3. **근거 없는 기능 추가 금지**: MVP 범위나 화면 요구사항에 없는 기능/화면/정책은 임의로 추가하지 않습니다. 필요하면 “제안”으로 분리해 표시합니다.
-4. **원본 에셋 보존**: `Brand_Assets/`의 원본 이미지와 `video/assets/pdf/`의 PDF 변환 이미지는 명시 요청 없이 덮어쓰지 않습니다. 파생본은 새 이름으로 저장합니다.
+4. **원본과 기존 산출물 보존**: 원본 에셋, 기존 렌더 결과물, 사용자가 수정 중인 파일은 명시 요청 없이 덮어쓰거나 삭제하지 않습니다.
 5. **런타임/시스템 파일 제외**: `.omx/`, `.git/`, `.DS_Store`, 임시 캐시, 빌드 산출물은 프로젝트 산출물로 취급하지 않습니다.
-6. **작은 변경 선호**: 문서/영상/에셋 변경은 목적별로 작고 되돌리기 쉽게 유지합니다.
+6. **작은 변경 선호**: 문서/코드/영상/에셋 변경은 목적별로 작고 되돌리기 쉽게 유지합니다.
 7. **검증 후 완료 보고**: 변경 후 가능한 검증을 실행하고, 실행한 명령과 결과를 짧게 보고합니다.
-8. **폴더 구조 변경 시 문서 갱신**: 새 폴더/주요 파일을 추가하거나 기존 폴더 역할을 바꾸면, 같은 작업 안에서 이 `AGENTS.md`의 `현재 폴더 구조`와 관련 작업 규칙도 반드시 함께 수정합니다.
-
-## 문서 작업 규칙
-
-- 새 제품 문서는 `docs/` 아래에 둡니다.
-- 화면 단위 요구사항은 `docs/wire_frame_requirements/`에 `NN-kebab-name.md` 형식으로 추가합니다.
-- 기존 화면의 파생 모달/팝업/인라인 상태는 가능하면 해당 화면 문서 안에 함께 정리합니다.
-- 화면 목록이나 흐름을 바꾸면 `docs/wire_frame_requirements/00-index.md`도 함께 갱신합니다.
-- 변경 합의나 결정 기록은 날짜가 보이도록 `docs/변경사항/` 아래에 남깁니다.
-- 문서에서는 Stology 핵심 용어를 일관되게 사용합니다.
-  - `Stology`, `Study + Ontology`, `온톨로지`, `자료`, `지식 구조`, `노드`, `그래프`, `Evidence`, `검토`, `합의`, `주차별 리포트`
+8. **폴더 구조 변경 시 문서 갱신**: 새 폴더/주요 파일을 추가하거나 기존 폴더 역할을 바꾸면, 같은 작업 안에서 이 문서의 `현재 폴더 구조`와 관련 모듈 지침도 함께 갱신합니다.
+9. **주요 변경 시 루트 지침 갱신**: 새 모듈/상위 폴더 추가, 모듈 역할 변경, 기획 변경안 또는 합의안 추가, 제품 범위 변경, 주요 명령/검증 방식 변경, 새 산출물 유형 추가가 있으면 같은 작업 안에서 이 루트 `AGENTS.md`와 필요한 하위 `AGENTS.md`를 갱신합니다.
 
 ## 제품 범위 참고
 
@@ -95,57 +88,37 @@ MVP의 핵심 흐름은 다음과 같습니다.
 
 MVP에서 보류된 범위는 외부 문서 연동, Notion/Google Docs/Discord/Slack 연동, 사용자 온톨로지 직접 수정, 별도 설정 화면 등입니다.
 
-## 영상 작업 규칙
+## 추적성과 변경 흐름
 
-`video/` 아래 파일을 수정할 때는 반드시 `video/AGENTS.md`와 `video/DESIGN.md`를 함께 따릅니다.
+- 제품 범위나 화면 흐름이 바뀌면 먼저 `docs/`의 기획/요구사항 문서를 갱신합니다.
+- 기획 변경안, 합의안, 주요 결정 기록이 새로 생기면 `docs/변경사항/`에 보관하고, 그 결정이 프로젝트 구조/작업 방식/제품 범위에 영향을 주는 경우 루트 `AGENTS.md`에도 반영합니다.
+- 새 모듈이나 주요 산출물 폴더가 생기면 루트 `AGENTS.md`의 `현재 폴더 구조`, `모듈별 진입점`, `검증 기준`을 함께 갱신합니다. 모듈 자체 작업 규칙이 필요하면 해당 폴더에 별도 `AGENTS.md`를 추가합니다.
+- 데모 구현을 바꾸면 `demo/docs/traceability.md`의 요구사항-구현-검증 매핑을 함께 확인합니다.
+- 영상 메시지나 시각 기준을 바꾸면 `video/DESIGN.md`와 `video/AGENTS.md`의 기준을 확인합니다.
+- 합의나 결정 기록은 날짜가 보이도록 `docs/변경사항/` 아래에 남깁니다.
 
-주요 명령:
+## 프로젝트 전용 Codex 스킬 생성 규칙
 
-```bash
-cd video
-npm run dev       # HyperFrames preview
-npm run check     # lint + validate + inspect
-npm run render    # MP4 render
-npm run publish   # publish
-```
+Codex에서 Stology 프로젝트 전용 스킬을 만들거나 수정하는 요청을 받으면 `skill-creator` 지침을 따르되, 결과 보관본은 기본적으로 이 저장소의 `ai-skills/<skill-name>/` 아래에 추가하거나 갱신합니다.
 
-영상 작업 완료 기준:
+- 스킬 이름은 lowercase hyphen-case로 정규화합니다.
+- 최소 구조는 `ai-skills/<skill-name>/SKILL.md`입니다. 필요한 경우에만 `scripts/`, `references/`, `assets/`, `agents/openai.yaml`을 추가합니다.
+- `SKILL.md`에는 YAML frontmatter의 `name`, `description`을 포함하고, 프로젝트 전용 사용 범위와 트리거를 명확히 씁니다.
+- 스킬 생성으로 새 폴더나 주요 보관 구조가 생기면 루트 `AGENTS.md`의 `현재 폴더 구조`와 `ai-skills/AGENTS.md`를 확인해 필요 시 갱신합니다.
+- 활성 Codex 스킬로도 설치해야 하는 경우에는 프로젝트 보관본을 먼저 만든 뒤, 사용자 요청 범위에 따라 Codex 스킬 설치 경로와 동기화 여부를 완료 보고에 명확히 남깁니다.
 
-- `.html` 컴포지션 수정 후 `npm run check` 실행
-- 렌더 결과가 필요한 작업이면 `npm run render` 실행
-- 실제 MP4 길이/주요 프레임 검수가 필요한 경우 `ffprobe` 및 프레임 추출로 확인
-- `video/renders/`의 기존 결과물은 명시 요청 없이 삭제/덮어쓰기 금지
+## 검증 기준
 
-## 데모사이트 작업 규칙
-
-`demo/`는 로그인/백엔드 없이 Stology 핵심 화면 흐름을 체험하기 위한 정적 React 데모입니다.
-
-주요 명령:
-
-```bash
-cd demo
-npm install       # 최초 의존성 설치
-npm run dev       # 로컬 미리보기
-npm run typecheck # TypeScript 검사
-npm run lint      # ESLint 검사
-npm run build     # 프로덕션 빌드
-```
-
-데모 작업 기준:
-
-- 로그인은 구현하지 않고 로그인된 Home 화면에서 시작합니다.
-- 백엔드 API, 브라우저 저장소, 실제 파일 업로드/파싱은 추가하지 않습니다.
-- 데모 데이터는 `사용자1`, `스터디1`, `자료1`, `개념1`처럼 추상 명칭만 사용합니다.
-- 시각 스타일은 화이트/그레이 스켈레톤으로 유지하고 의미 색상은 쓰지 않습니다.
-- 주요 화면/상호작용 컴포넌트에는 서비스 기능과 개발/디자인 요구사항을 담은 hover/focus 말풍선을 유지합니다.
-- 3D 온톨로지 그래프는 `react-force-graph-3d` 기반으로 유지하되 그래프 직접 편집 기능은 추가하지 않습니다.
-- `demo/node_modules/`, `demo/dist/`, `*.tsbuildinfo`는 산출물로 커밋하지 않습니다.
+- 문서만 바꾼 경우: 링크/파일명/화면 번호/용어 일관성을 확인합니다.
+- `demo/`를 바꾼 경우: `demo/AGENTS.md`의 명령 기준에 따라 `npm run typecheck`, `npm run lint`, `npm run build` 중 변경 범위에 맞게 실행합니다.
+- `video/`를 바꾼 경우: `video/AGENTS.md`의 HyperFrames 검증 기준을 따릅니다.
+- 검증을 실행하지 못한 경우: 이유와 대체 확인 방법을 완료 보고에 남깁니다.
 
 ## Git/커밋 지침
 
 - 사용자 요청 없이 커밋하지 않습니다.
 - 커밋이 필요한 경우 메시지는 Lore Commit Protocol 형식을 따릅니다.
-- `.DS_Store`, 임시 파일, 런타임 로그, 불필요한 렌더 산출물이 커밋에 섞이지 않게 확인합니다.
+- `.DS_Store`, 임시 파일, 런타임 로그, 불필요한 렌더 산출물, `node_modules/`, `dist/`가 커밋에 섞이지 않게 확인합니다.
 
 ## 빠른 참조
 
@@ -157,4 +130,3 @@ npm run build     # 프로덕션 빌드
 - 영상 디자인 기준: `video/DESIGN.md`
 - 영상 구현 규칙: `video/AGENTS.md`
 - 영상 메인 파일: `video/index.html`
-- 브랜드 이미지: `Brand_Assets/`

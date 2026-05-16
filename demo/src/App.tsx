@@ -1,10 +1,9 @@
 import { useMemo, useState } from 'react';
+import { AppFrame } from './components/AppFrame';
 import { TooltipProvider } from './components/TooltipProvider';
 import { deriveConcepts, initialState, studyScreen } from './state/demoState';
-import type { DemoState, StudyTab } from './types/demo';
+import type { DemoState, HomeModal, ReviewDecision, StudyTab } from './types/demo';
 import { HomeScreen } from './screens/HomeScreen';
-import { CreateStudyScreen } from './screens/CreateStudyScreen';
-import { InviteScreen } from './screens/InviteScreen';
 import { StudyShell } from './screens/StudyShell';
 import { ReviewScreen } from './screens/ReviewScreen';
 import './styles/tokens.css';
@@ -14,41 +13,54 @@ export default function App() {
   const [state, setState] = useState<DemoState>(initialState);
   const concepts = useMemo(() => deriveConcepts(state), [state]);
 
+  const openHome = () => setState((current) => ({ ...current, screen: { route: 'home' }, homeModal: null }));
+  const openStudy = (tab: StudyTab = 'knowledge') => setState((current) => ({ ...current, screen: studyScreen(tab), homeModal: null }));
   const setTab = (tab: StudyTab) => setState((current) => ({ ...current, screen: studyScreen(tab) }));
+  const setHomeModal = (homeModal: HomeModal) => setState((current) => ({ ...current, homeModal }));
+  const setReviewDecision = (reviewDecision: ReviewDecision) => setState((current) => ({ ...current, reviewDecision }));
+  const finishReview = () => {
+    setState((current) => ({
+      ...current,
+      approvedConceptIds: current.reviewDecision === 'approve' ? ['개념1'] : [],
+      rejectedConceptIds: current.reviewDecision === 'reject' ? ['개념1'] : [],
+      reviewDecision: null,
+      screen: studyScreen('upload'),
+    }));
+  };
 
   return (
     <TooltipProvider>
       {state.screen.route === 'home' && (
-        <HomeScreen
-          onCreate={() => setState((current) => ({ ...current, screen: { route: 'createStudy' } }))}
-          onOpenStudy={() => setState((current) => ({ ...current, screen: studyScreen('knowledge') }))}
-        />
+        <AppFrame active="home" onHome={openHome} onOpenStudy={openStudy}>
+          <HomeScreen
+            modal={state.homeModal}
+            onCreate={() => setHomeModal('createStudy')}
+            onInvite={() => setHomeModal('invite')}
+            onCloseModal={() => setHomeModal(null)}
+            onOpenStudy={() => openStudy('knowledge')}
+            onEnterStudy={() => openStudy('upload')}
+          />
+        </AppFrame>
       )}
-      {state.screen.route === 'createStudy' && (
-        <CreateStudyScreen
-          onNext={() => setState((current) => ({ ...current, screen: { route: 'invite' } }))}
-          onCancel={() => setState((current) => ({ ...current, screen: { route: 'home' } }))}
-        />
-      )}
-      {state.screen.route === 'invite' && <InviteScreen onEnterStudy={() => setState((current) => ({ ...current, screen: studyScreen('upload') }))} />}
       {state.screen.route === 'study' && (
-        <StudyShell
-          tab={state.screen.tab}
-          concepts={concepts}
-          onTabChange={setTab}
-          onReview={() => setState((current) => ({ ...current, screen: { route: 'review', materialId: '자료1' } }))}
-          onQuestionDraft={() => setState((current) => ({ ...current, draftQuestionOpen: !current.draftQuestionOpen }))}
-          draftQuestionOpen={state.draftQuestionOpen}
-          editQuestionId={state.editQuestionId}
-          deleteQuestionId={state.deleteQuestionId}
-          editReplyId={state.editReplyId}
-        />
+        <AppFrame active="study" onHome={openHome} onOpenStudy={openStudy}>
+          <StudyShell
+            tab={state.screen.tab}
+            concepts={concepts}
+            onTabChange={setTab}
+            onReview={() => setState((current) => ({ ...current, reviewDecision: null, screen: { route: 'review', materialId: '자료1' } }))}
+            onQuestionDraft={() => setState((current) => ({ ...current, draftQuestionOpen: !current.draftQuestionOpen }))}
+            draftQuestionOpen={state.draftQuestionOpen}
+            editQuestionId={state.editQuestionId}
+            deleteQuestionId={state.deleteQuestionId}
+            editReplyId={state.editReplyId}
+          />
+        </AppFrame>
       )}
       {state.screen.route === 'review' && (
-        <ReviewScreen
-          onApprove={() => setState((current) => ({ ...current, approvedConceptIds: ['개념1'], rejectedConceptIds: [], screen: studyScreen('knowledge') }))}
-          onReject={() => setState((current) => ({ ...current, rejectedConceptIds: ['개념1'], approvedConceptIds: [], screen: studyScreen('knowledge') }))}
-        />
+        <AppFrame active="review" onHome={openHome} onOpenStudy={openStudy}>
+          <ReviewScreen decision={state.reviewDecision} onDecision={setReviewDecision} onFinish={finishReview} />
+        </AppFrame>
       )}
     </TooltipProvider>
   );

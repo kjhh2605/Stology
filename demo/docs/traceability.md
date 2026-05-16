@@ -3,7 +3,12 @@
 | Requirement | Implementation | Verification |
 |---|---|---|
 | Logged-in Home starts the demo | `src/screens/HomeScreen.tsx`, `src/App.tsx` initial state | Smoke path starts at Home |
-| Home → create → invite → study(upload) → review → knowledge → records → report → questions | `src/App.tsx`, `src/screens/*` | Manual smoke flow and build |
+| Home → create modal → invite modal → study(upload) → review → upload → knowledge/records/report/questions | `src/App.tsx`, `src/screens/*` | Headless DOM smoke, manual flow target, build |
+| Figma HOME001 left sidebar, card row, split activity logs | `src/components/AppFrame.tsx`, `src/screens/HomeScreen.tsx`, `src/styles/globals.css` | Figma `14:169` context + headless DOM check |
+| Figma STD_CONTAINER fixed header and five tabs | `src/screens/StudyShell.tsx`, `src/styles/globals.css` | Figma `14:550` context + typecheck/lint/build |
+| Figma STD_UPLOAD top/bottom split and AI001 review list | `src/screens/tabs/UploadTab.tsx`, `src/screens/ReviewScreen.tsx` | Figma `14:1689`, `14:2255` contexts + build |
+| Figma STD_KG graph/filter structure with 3D adaptation plus node selection | `src/screens/tabs/KnowledgeTab.tsx`, `src/components/OntologyGraph3D.tsx` | Figma `14:1139` context + typecheck/lint/build |
+| Graph interactions: visible links, node side panel slide-in/out, related-node highlight | `src/components/OntologyGraph3D.tsx`, `src/screens/tabs/KnowledgeTab.tsx`, `src/styles/globals.css` | TypeScript prop coverage + build |
 | StudyShell has exactly five tabs | `src/screens/StudyShell.tsx` | Code inspection and smoke navigation |
 | Review screen is app-level, not a tab | `src/screens/ReviewScreen.tsx`, `src/App.tsx` route `review` | Smoke review entry from `자료1` |
 | Preset accumulated abstract data | `src/data/demoData.ts` | Accumulated data audit |

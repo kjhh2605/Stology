@@ -46,9 +46,10 @@ export function useTooltip() {
 }
 
 function getTooltipStyle(rect: DOMRect) {
-  const width = 280;
+  const width = Math.min(420, window.innerWidth - 32);
+  const estimatedHeight = 220;
   const left = Math.min(Math.max(16, rect.left), window.innerWidth - width - 16);
   const below = rect.bottom + 12;
-  const top = below > window.innerHeight - 128 ? Math.max(16, rect.top - 132) : below;
+  const top = below + estimatedHeight > window.innerHeight ? Math.max(16, rect.top - estimatedHeight - 12) : below;
   return { left, top, width };
 }
